@@ -25,13 +25,22 @@ function App () {
 		]);
 	};
 
+	//Blakes way:
+	// const removeItem = (id) => setCart(cart.filter((item) => item.id !== id));
+
+	const removeItem = (id) => {
+		let filtered = setCart(cart.filter((item) => item.id !== id));
+	};
+
 	return (
 		<ProductContext.Provider value={{ products, addItem }}>
-			<CartContext.Provider
+			{/* <CartContext.Provider
 				value={[
 					...cart
 				]}
-			>
+			> */}
+			<CartContext.Provider value={{ cart, removeItem }}>
+				{/* <CartContext.Provider value={{ cart, removeItem }}> */}
 				<div className="App">
 					<Navigation />
 					{/* Routes */}

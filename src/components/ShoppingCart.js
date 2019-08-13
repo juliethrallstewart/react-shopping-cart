@@ -4,10 +4,12 @@ import CartContext from '../components/contexts/CartContext';
 // Components
 import Item from './ShoppingCartItem';
 
-const ShoppingCart = (props) => {
-	const [
-		...cart
-	] = useContext(CartContext);
+const ShoppingCart = () => {
+	// const [
+	// 	...cart
+	// ] = useContext(CartContext);
+
+	const { cart, removeItem } = React.useContext(CartContext);
 
 	const getCartTotal = () => {
 		return cart
@@ -19,7 +21,7 @@ const ShoppingCart = (props) => {
 
 	return (
 		<div className="shopping-cart">
-			{cart.map((item) => <Item key={item.id} {...item} />)}
+			{cart.map((item) => <Item key={Date.now()} removeItem={removeItem} {...item} />)}
 
 			<div className="shopping-cart__checkout">
 				<p>Total: ${getCartTotal()}</p>
